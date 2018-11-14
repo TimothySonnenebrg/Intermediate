@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BodyMassIndex
+namespace AutomobileCost
 {
     public partial class Form1 : Form
     {
@@ -17,24 +17,42 @@ namespace BodyMassIndex
             InitializeComponent();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close(); //Exits Application
-        }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtHeight.Text = " ";
-            txtWeight.Text = " ";
-            lblBMIdisplay.Text = " "; //Clears out form
+            txtGas.Text = "";  txtInsurance.Text = ""; txtLoan.Text = "";
+            txtMaint.Text = ""; txtOil.Text = ""; txtTires.Text = "";
+            lblCostDisplay.Text = "";
+           
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            //vars declared
-            double dblWeight;
-            double dblHeight;
-            double dblBMI;
+            double dblGas; double dblInsurance; double dblLoan;
+            double dblMaint; double dblOil; double dblTires;
+            double dblCost;
+
+            try
+            {
+
+                dblGas = double.Parse(txtGas.Text);
+                dblInsurance = double.Parse(txtInsurance.Text);
+                dblLoan = double.Parse(txtLoan.Text);
+                dblMaint = double.Parse(txtMaint.Text);
+                dblOil = double.Parse(txtOil.Text);
+                dblTires = double.Parse(txtTires.Text);
+
+                dblCost = dblGas + dblInsurance + dblLoan + dblMaint
+                            + dblOil + dblTires;
+
+
+              lblCostDisplay.Text = dblCost.ToString("c");
+
+            }
+            catch (Exception)
+            {
+
+               MessageBox.Show("Please enter a number");
+            }
         }
     }
 }
